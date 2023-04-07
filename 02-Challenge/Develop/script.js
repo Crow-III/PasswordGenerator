@@ -1,80 +1,105 @@
 // Assignment Code
-const charlength = document.getElementById
-('charlength')
-const charNumber = document.getElementById
-('CharNumber')
-
-const includeUppercaseElement = document.getElementById('includeUppercase')
-const includeLowercaseElement = document.getElementById('includeLowercase')
-const includeNumbersElement = document.getElementById('includeNumbers')
-const includeSymbolsElement = document.getElementById('includeSymbols')
-const form = document.getElementById('passwordGeneratorForm')
-const passwordDisplay = document.getElementById('password')
+ var includeUppercaseElement = document.getElementById('includeUppercase')
+ var includeLowercaseElement = document.getElementById('includeLowercase')
+ var includeNumbersElement = document.getElementById('includeNumbers')
+ var includeSymbolsElement = document.getElementById('includeSymbols')
+ var form = document.getElementById('passwordGeneratorForm')
+ var passwordDisplay = document.getElementById('password')
+ var passwordLength = document.getElementById('CharNumber')
 
 
 
-
-
- const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
- const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
- const NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
- const SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47)
 
  form.addEventListener('submit', e => {
-   e.preventDefault()
-   const characterAmount = characterAmount.value
-   const includeUppercase = includeUppercaseElement.checked
-   const includeLowercase = includeLowercaseElement.checked
-   const includeNumbers = includeNumbersElement.checked
-   const includeSymbols = includeSymbolsElement.checked
-   const password = generatePassword(characterAmount, includeUppercase, includeLowercase, includeNumbers, includeSymbols) 
-  passwordDisplay.innertext = password
+  e.preventDefault()
+
+  var password = generatePassword() 
+ passwordDisplay.value = password
+ console.log(password);
+console.log('formsubmitted')
  })
 
-function synccharacterAmount(e) {
-  const value = e.target.value
-  charNumber.value = value
-  charlength.value = value
+ var includeLowercaseEl = String.fromCharCode(97, 122)
+ console.log(includeLowercaseEl);
+
+
+
+//  var generateBtn = document.querySelector("#generate");
+// generateBtn.addEventListener("click", generatePassword);
+
+function generatePassword(){
+ var password 
+ var characterAmount = CharNumber.value
+  var includeUppercase = includeUppercaseElement.checked
+  var includeLowercase = includeLowercaseElement.checked
+  var includeNumbers = includeNumbersElement.checked
+  var includeSymbols = includeSymbolsElement.checked
+  
+  var generatedpassword = ""
+  
+  for (var i=0;i <= characterAmount-1;  i++){
+    // var numbers = String.fromCharCode(Math.floor(Math.random(, ) * 9 ))
+    // console.log(numbers)
+    // Uppercase are from 65 to 90
+    //Lowercase are 97 to 122
+    //specials are 33 to 47
+
+    //check if user wants uppercase
+    if (includeUppercase === true){
+      generatedpassword+=characterSelect(65,90)
+    }
+    //check if user wants lowercase
+     if (includeLowercase === true){
+      characterSelect(97,122)
+    }
+    //check if user wants numbers
+        if (includeNumbers === true){
+          characterSelect(48,57)
+        }
+
+    //check if user wants symbols
+        if (includeSymbols === true){
+          characterSelect(33,47)
+        }
+
+  }
+  console.log({generatedpassword})
+
+
+  var options = {
+    characterAmount,
+    includeLowercase,
+    includeUppercase,
+    includeNumbers, 
+    includeSymbols,
+  }
+  console.log(options);
+  password = '123'
+  return password
 }
-charNumber.addEventListener('input', synccharacterAmount)
-charlength.addEventListener('input', synccharacterAmount)
+var personName = "james"
+
+var person = {
+personName,
 
 
-function generatePassword(characterAmount, includeUppercase, includeLowercase, includeNumbers, includeSymbols)
-{
- let charCodes = (includeLowercase = LOWERCASE_CHAR_CODES)
- if (includeUppercase) charCodes = charCodes.concat
-  (UPPERCASE_CHAR_CODES)
- if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
- if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
- const passwordCharacters = []
- for (let i = 0; i < characterAmount, i++;) {
- const characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
- passwordCharacters.push(string.fromCharCode(characterCode))
 }
- return passwordCharacters.join('')
+console.log(person);
+//for (var i = 0; i <= passwordLength; i++) {
+ // var password = Math.floor(Math.random() * chars.length);
+ // password += chars.substring(, r +1);
+ //}
+
+
+
+ // Write password to the #password input
+// Add event listener to generate button
+function characterSelect(min, max){
+//var randomSelection = String.fromCharCode(Math.floor(Math.random()))
+var randomSelection = String.fromCharCode(Math.floor(Math.random()*((max+ 1)-min)+min))
+return randomSelection
 }
-
-function arrayFromLowToHigh(low, high) {
- const array = []
- for (let i =low; i <= high; i++) {
-  array.push(i)
- }
- return array
-}
-
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+characterSelect(65,90);
+characterSelect(97,122);
 
 

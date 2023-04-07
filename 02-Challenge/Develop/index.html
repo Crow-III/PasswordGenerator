@@ -17,13 +17,12 @@
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
-          <h3 id="password">your password <h3>
+          <input id="password" type="text" placeholder="your password" name="" readonly>
         </div>
       <div class=container>
         <form id="passwordGeneratorForm" class="form">
           <label for="CharNumber">Password length</label>
           <div class="character-align">
-          <input type="range" min="8" max="128" value="10" id="charlength">
           <input class="numberbox" type="number" min="8" max="128" value="10" id="CharNumber">
           </div>
           <label for="includeUppercase">Include Uppercase</label>
@@ -34,7 +33,7 @@
           <input type="checkbox" id="includeNumbers">
           <label for="includeSymbols">Include Symbols</label>
           <input type="checkbox" id="includeSymbols">
-          <button type ="submit" class="btn">Generate Password</button>
+          <button type="submit" id="generate" class="btn">Generate Password</button>
         </form>
       </div>
        
