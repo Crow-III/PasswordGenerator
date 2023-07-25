@@ -7,46 +7,51 @@ var passwordDisplay = document.getElementById('password')
 var passwordLength = document.getElementById('CharNumber')
 
 
- function generatePassword(){
-  var password 
-  var characterAmount = CharNumber.value
-   var includeUppercase = includeUppercaseElement.checked
-   var includeLowercase = includeLowercaseElement.checked
-   var includeNumbers = includeNumbersElement.checked
-   var includeSymbols = includeSymbolsElement.checked
-   
-   var password = " "
-   
-   for (var i=0;i <= characterAmount-1;  i++){
-     //check if user wants uppercase
-     if (includeUppercase === true){
-       password+=characterSelect(65,90)
-     }
-     //check if user wants lowercase
-      if (includeLowercase === true){
-        password+=characterSelect(97,122)
-     }
-     //check if user wants numbers
-      if (includeNumbers === true){
-        password+=characterSelect(48,57)
-         }
-     //check if user wants symbols
-      if (includeSymbols === true){
-        password+=characterSelect(33,47)
-         }
-         
-         console.log(password);
-   var options = {
-    characterAmount,
-    includeLowercase,
-    includeUppercase,
-    includeNumbers, 
-    includeSymbols,
+function generatePassword() {
+  var characterAmount = passwordLength.value;
+  var includeUppercase = includeUppercaseElement.checked;
+  var includeLowercase = includeLowercaseElement.checked;
+  var includeNumbers = includeNumbersElement.checked;
+  var includeSymbols = includeSymbolsElement.checked;
+
+  var selectedOptionsCount = [includeUppercase, includeLowercase, includeNumbers, includeSymbols].filter(Boolean).length;
+  var charactersPerType = Math.floor(characterAmount / selectedOptionsCount);
+  var password = "";
+
+  var types = [];
+  if (includeUppercase) types.push('uppercase');
+  if (includeLowercase) types.push('lowercase');
+  if (includeNumbers) types.push('numbers');
+  if (includeSymbols) types.push('symbols');
+
+  for (var i = 0; i < charactersPerType; i++) {
+    types.forEach(function(type) {
+      switch (type) {
+        case 'uppercase':
+          password += characterSelect(65, 90);
+          break;
+        case 'lowercase':
+          password += characterSelect(97, 122);
+          break;
+        case 'numbers':
+          password += characterSelect(48, 57);
+          break;
+        case 'symbols':
+          password += characterSelect(33, 47);
+          break;
+      }
+    });
   }
-  console.log(options);
-  
-  return password
-   }}
+
+  // Add any remaining characters to the password to match the specified length
+  for (var i = password.length; i < characterAmount; i++) {
+    password += characterSelect(33, 122); // A broad range of characters (33 to 122) to fill up the remaining spaces.
+  }
+
+  return password;
+}
+
+   
    
    form.addEventListener('submit', e => {
     e.preventDefault()
