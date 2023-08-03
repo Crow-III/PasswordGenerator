@@ -4,6 +4,8 @@
 
 *https://crow-iii.github.io/PasswordGenerator/
 
+*https://github.com/Crow-III/PasswordGenerator
+
 ![Alt text](<Screenshot 2023-08-02 at 18-59-58 Password Generator.png>)
 
 # Resources 
